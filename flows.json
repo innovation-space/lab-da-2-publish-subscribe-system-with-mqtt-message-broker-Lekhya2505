@@ -1,0 +1,463 @@
+[
+    {
+        "id": "3e0ac8c05fbe0414",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f516766f6a257e73",
+        "type": "inject",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "fc5ee559a62056bf"
+            ]
+        ]
+    },
+    {
+        "id": "fc5ee559a62056bf",
+        "type": "function",
+        "z": "3e0ac8c05fbe0414",
+        "name": "function 1",
+        "func": "msg.topic = \"campus/blockA/temperature\";\nmsg.payload = Math.floor(Math.random() * 10) + 25;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "81d30a9819a170a3"
+            ]
+        ]
+    },
+    {
+        "id": "81d30a9819a170a3",
+        "type": "mqtt out",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65e29449f0c43ed9",
+        "x": 490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "112b6de4915044b6",
+        "type": "inject",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "71dfd5f5c7155cfc"
+            ]
+        ]
+    },
+    {
+        "id": "71dfd5f5c7155cfc",
+        "type": "function",
+        "z": "3e0ac8c05fbe0414",
+        "name": "function 2",
+        "func": "msg.topic = \"campus/blockB/airquality\";\nmsg.payload = Math.floor(Math.random() * 50) + 100;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "7dae1bb04c78feb4"
+            ]
+        ]
+    },
+    {
+        "id": "7dae1bb04c78feb4",
+        "type": "mqtt out",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "topic": "",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65e29449f0c43ed9",
+        "x": 490,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ac4dba83e4b1c562",
+        "type": "mqtt in",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "topic": "campus/+/+",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "65e29449f0c43ed9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "7e39887d29f3b5a6"
+            ]
+        ]
+    },
+    {
+        "id": "7e39887d29f3b5a6",
+        "type": "debug",
+        "z": "3e0ac8c05fbe0414",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "26a020bd9fe02ca6",
+        "type": "mqtt in",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "topic": "campus/blockA/temperature",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "65e29449f0c43ed9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 380,
+        "wires": [
+            [
+                "7d6b53eb6915dd4b"
+            ]
+        ]
+    },
+    {
+        "id": "7d6b53eb6915dd4b",
+        "type": "ui_gauge",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "group": "4a9fcd616916f7f6",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 490,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "0faf1a3121278116",
+        "type": "mqtt in",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "topic": "campus/blockB/airquality",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "65e29449f0c43ed9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "b49decf6f89e5b93"
+            ]
+        ]
+    },
+    {
+        "id": "b49decf6f89e5b93",
+        "type": "ui_chart",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "group": "4a9fcd616916f7f6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Air Quality",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 550,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7904a18969da45ca",
+        "type": "inject",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 600,
+        "wires": [
+            [
+                "29cb469f4a4ec05f"
+            ]
+        ]
+    },
+    {
+        "id": "29cb469f4a4ec05f",
+        "type": "function",
+        "z": "3e0ac8c05fbe0414",
+        "name": "function 3",
+        "func": "msg.topic = \"campus/status\";\nmsg.payload = \"System Active\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 600,
+        "wires": [
+            [
+                "36d8ecb2a46936a9"
+            ]
+        ]
+    },
+    {
+        "id": "36d8ecb2a46936a9",
+        "type": "mqtt out",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "topic": "",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65e29449f0c43ed9",
+        "x": 590,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "48a0eb0a85cd5838",
+        "type": "mqtt in",
+        "z": "3e0ac8c05fbe0414",
+        "name": "",
+        "topic": "campus/status",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "65e29449f0c43ed9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 680,
+        "wires": [
+            [
+                "803b99e040ca5e8a"
+            ]
+        ]
+    },
+    {
+        "id": "803b99e040ca5e8a",
+        "type": "ui_text",
+        "z": "3e0ac8c05fbe0414",
+        "group": "4a9fcd616916f7f6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 430,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "65e29449f0c43ed9",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4a9fcd616916f7f6",
+        "type": "ui_group",
+        "name": "Campus Monitor",
+        "tab": "6cce680d3265af79",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6cce680d3265af79",
+        "type": "ui_tab",
+        "name": "Campus Dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3977783bcacfb9ba",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
